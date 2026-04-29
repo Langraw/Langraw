@@ -77,7 +77,7 @@ video {
 header {
     background-color: #1a1a1d;
     width: 100%;
-    position: sticky; /* 或者 fixed */
+    position: sticky; 
     top: 0;
     z-index: 9999;    /* 必须是最高级 */
 }
@@ -90,7 +90,7 @@ nav {
     padding: 0 5%; 
     box-sizing: border-box;
     height: 80px;
-    position: relative; /* 为下拉菜单提供参考 */
+    position: relative; 
 }
 
 nav h1 {
@@ -243,35 +243,29 @@ nav h1 {
 
 .dropdown-bg {
     position: absolute;
-    top: 80px; /* 对应 nav 的高度 */
+    top: 80px; 
     right: 0; 
     width: 350px;
     background-color: #1a1a1d;
-    z-index: 10000;      /* 确保高于视频容器 */
+    z-index: 10000;
     overflow: hidden;
     
-    /* 初始状态 */
-    height: 0;
+    /* 初始状态：不可见且高度为0 */
+    height: 0; 
     opacity: 0;
     visibility: hidden;
     
-    /* 动画过渡 */
+    /* 核心动画：只针对高度和透明度过渡 */
     transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
                 opacity 0.3s ease;
     border-bottom-left-radius: 10px;
 }
 
-/* 仅靠这个类来控制显示 */
+/* 仅靠这个类控制显示 - 严禁在这里写 display: block !important */
 .dropdown-bg.active {
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
-
-/* 4. 删除之前所有关于 .menu-container:hover .dropdown-bg 的高度设置 */
-/* 不要写 max-height: 1000px，也不要写 height: 450px */
-
-/* 核心修改 3：悬停时给一个足够大的最大高度值 */
-/* 只要内部实际内容小于 1000px，它就会按实际内容高度显示 */
 .menu-container:hover .dropdown-bg {
     max-height: 1000px; 
 }
@@ -585,4 +579,9 @@ header nav {
 
 .side-panel.active .work-item {
     opacity: 1;
+}
+
+.project-group, .video-container, video {
+    z-index: 1 !important;
+    position: relative;
 }
