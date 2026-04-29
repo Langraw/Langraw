@@ -77,27 +77,20 @@ video {
 header {
     background-color: #1a1a1d;
     width: 100%;
-    position: fixed; /* 修正：建议设为 fixed 或 sticky，确保导航永远在最前 */
+    position: sticky; /* 或者 fixed */
     top: 0;
-    left: 0;
-    z-index: 9999;   /* 确保 header 本身处于最高层级 */
-}
-
-/* 确保下拉菜单背景也在最高层 */
-.dropdown-bg {
-    z-index: 10000;  /* 必须比 header 高 */
+    z-index: 9999;    /* 必须是最高级 */
 }
 
 nav {
     width: 100%;
     display: flex;
-    /* 核心：将 Logo 挤到最左，菜单容器挤到最右 */
     justify-content: space-between; 
     align-items: center;
-    padding: 0 0 0 5%; 
+    padding: 0 5%; 
     box-sizing: border-box;
     height: 80px;
-    background-color: #1a1a1d; /* 确保导航栏背景色统一 */
+    position: relative; /* 为下拉菜单提供参考 */
 }
 
 nav h1 {
@@ -250,26 +243,28 @@ nav h1 {
 
 .dropdown-bg {
     position: absolute;
-    top: 100%; 
+    top: 80px; /* 对应 nav 的高度 */
     right: 0; 
     width: 350px;
-    height: 0;           /* 初始高度 0 */
-    opacity: 0;          /* 初始透明 0 */
-    visibility: hidden;  /* 初始不可见 */
-    overflow: hidden;
     background-color: #1a1a1d;
-    /* 核心动画：同时过渡高度和透明度 */
+    z-index: 10000;      /* 确保高于视频容器 */
+    overflow: hidden;
+    
+    /* 初始状态 */
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    
+    /* 动画过渡 */
     transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
                 opacity 0.3s ease;
-    z-index: 10000;
+    border-bottom-left-radius: 10px;
 }
 
-/* 当激活状态或悬停状态时 */
-.menu-container:hover .dropdown-bg,
+/* 仅靠这个类来控制显示 */
 .dropdown-bg.active {
-    opacity: 1 !important;
-    visibility: visible !important;
-    /* 高度将通过你的 JS：dropdownBg.style.height 动态赋值 */
+    opacity: 1;
+    visibility: visible;
 }
 
 /* 4. 删除之前所有关于 .menu-container:hover .dropdown-bg 的高度设置 */
