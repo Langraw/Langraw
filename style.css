@@ -160,6 +160,31 @@ nav h1 {
     /* 调整位置，让三角形垂直居中 */
     transform: translateY(8px);
 }
+/* 修改汉堡菜单线条变换：不再只依赖 :hover，增加 .active 类 */
+.menu-toggle.active .line1,
+.menu-toggle.active .line3 {
+    opacity: 0;
+    width: 0;
+}
+
+.menu-toggle.active .line2 {
+    background-color: transparent;
+    border-radius: 0;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 12px solid white;
+    border-bottom: 0;
+    transform: translateY(8px);
+}
+
+/* 修改下拉背景：通过 .active 控制高度 */
+.dropdown-bg.active {
+    /* 这里的具体高度根据你的菜单内容决定，或者用 JS 动态计算 */
+    height: auto; 
+    min-height: 300px; 
+}
 .gallery {
     margin-top: 50px;          /* 视频区域和导航栏拉开距离 */
     display: grid;
