@@ -550,3 +550,18 @@ header nav {
     background: transparent; /* 确保没有背景色 */
     animation: fadeIn 0.8s ease;
 }
+
+/* 确保 active 类能强制展开菜单 */
+.dropdown-bg.active {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    /* 高度由 JS 的 dropdownBg.style.height 动态控制 */
+}
+
+/* 确保侧滑面板弹出 */
+#rigSidePanel.active {
+    display: block !important;
+    transform: translateX(0); /* 如果你用了位移动画 */
+    opacity: 1;
+}
