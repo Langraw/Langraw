@@ -110,6 +110,7 @@ function closeMenu() {
     if (dropdownBg) {
         dropdownBg.classList.remove('active');
         dropdownBg.style.height = "0px";
+        // 关键：重置高度时，CSS 的 transition 会接管并产生平滑收起效果
     }
 }
 
