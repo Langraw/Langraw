@@ -163,12 +163,6 @@ if (rigBtn && rigPanel) {
     });
 }
 
-if (rigClose) {
-    rigClose.addEventListener('click', () => {
-        rigPanel.classList.remove('active'); // 关闭
-    });
-}
-
 // 3. 处理点击作品切换视频和 Intro (完整替换版)
 document.querySelectorAll('.work-item').forEach(item => {
     item.addEventListener('click', function() {
@@ -226,12 +220,21 @@ document.querySelectorAll('.work-item').forEach(item => {
     });
 });
         // 新增：点击页面空白处，关闭所有已打开的菜单/面板
+// 新增/替换：点击页面空白处，关闭所有已打开的菜单/面板
 document.addEventListener('click', (e) => {
-    // 1. 关闭顶部导航
-    closeGlobalMenu();
+    // 1. 获取菜单和面板的 DOM 状态
+    const rigPanel = document.getElementById('rigSidePanel');
+    const rigBtn = document.getElementById('rigTrigger');
+    const dropdownBg = document.querySelector('.dropdown-bg');
+    const menuContainer = document.querySelector('.menu-container');
+
+    // 2. 如果点击的不是顶部导航容器，则关闭顶部导航
+    if (menuContainer && !menuContainer.contains(e.target)) {
+        closeGlobalMenu();
+    }
     
-    // 2. 关闭 Rig 选择面板（如果点击的目标不是面板本身和按钮）
-    if (rigPanel && !rigPanel.contains(e.target) && e.target !== rigBtn) {
+    // 3. 如果点击的不是 Rig 按钮，也不是侧滑面板本身，则关闭 Rig 面板
+    if (rigPanel && rigBtn && !rigPanel.contains(e.target) && !rigBtn.contains(e.target)) {
         rigPanel.classList.remove('active');
     }
 });
