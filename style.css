@@ -224,16 +224,16 @@ nav h1 {
 } */
 
 /* 1. 菜单容器：作为下拉背景的定位参考 */
-.menu-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* 这里的 padding-right 决定了它离屏幕最右边的距离 */
-    padding: 0 40px; 
-    height: 100%;
-    cursor: pointer;
-    z-index: 3000;
+/* 确保菜单容器在最顶层 */
+.menu-container, .side-panel {
+    z-index: 9999 !important; /* 极大值确保盖过视频 */
+    position: relative; /* 必须有定位属性 z-index 才生效 */
+}
+
+/* 检查并替换：确保视频容器的层级较低 */
+.video-content, video {
+    z-index: 1; 
+    position: relative; 
 }
 
 /* 【通用样式 - style.css】 */
@@ -389,30 +389,24 @@ header nav {
 }
 
 /* 2. 弹出小窗样式 */
+/* 1. 初始隐藏状态 */
 .side-panel {
-    position: absolute;
-    top: 50%;
-    right: calc(100% + 15px); /* 关键：固定在按钮左侧 15px 处 */
-    transform: translateY(-50%) translateX(10px); /* 垂直居中，初始微偏右 */
-    
-    width: 200px;
-    background-color: #1a1a1d;
-    border-radius: 8px;
-    padding: 10px 0;
-    z-index: 1000;
-    
-    /* 初始隐藏 */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -5px 5px 20px rgba(0,0,0,0.2);
+    transform: translateY(-10px); /* 初始位置轻微上移 */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* 平滑过渡 */
+    
+    /* 保持原有的背景和布局 */
+    position: absolute;
+    background: #1a1a1d;
+    z-index: 9999;
 }
 
-/* --- 激活状态 --- */
+/* 2. 激活状态 */
 .side-panel.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(-50%) translateX(0); /* 回到原位 */
+    transform: translateY(0); /* 回到原位 */
 }
 
 /* 关闭按钮（那个小三角形） */
@@ -563,5 +557,14 @@ header nav {
 #rigSidePanel.active {
     display: block !important;
     transform: translateX(0); /* 如果你用了位移动画 */
+    opacity: 1;
+}
+.work-item {
+    /* 移除之前的 animation 属性 */
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s; /* 稍微延迟 0.1s 出现，更有层次感 */
+}
+
+.side-panel.active .work-item {
     opacity: 1;
 }
