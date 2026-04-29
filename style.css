@@ -77,9 +77,15 @@ video {
 header {
     background-color: #1a1a1d;
     width: 100%;
-    /* 移除 padding，由内部的 nav 和 menu-container 控制间距 */
-    position: relative; 
-    z-index: 3000;
+    position: fixed; /* 修正：建议设为 fixed 或 sticky，确保导航永远在最前 */
+    top: 0;
+    left: 0;
+    z-index: 9999;   /* 确保 header 本身处于最高层级 */
+}
+
+/* 确保下拉菜单背景也在最高层 */
+.dropdown-bg {
+    z-index: 10000;  /* 必须比 header 高 */
 }
 
 nav {
@@ -247,13 +253,23 @@ nav h1 {
     top: 100%; 
     right: 0; 
     width: 350px;
-    height: 0;           /* 1. 初始高度为 0 */
-    overflow: hidden;    /* 2. 必须隐藏溢出内容 */
+    height: 0;           /* 初始高度 0 */
+    opacity: 0;          /* 初始透明 0 */
+    visibility: hidden;  /* 初始不可见 */
+    overflow: hidden;
     background-color: #1a1a1d;
-    /* 3. 这里的 0.5s 配合 JS 会变得非常丝滑 */
-    transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    z-index: -1;
-    border-bottom-left-radius: 10px;
+    /* 核心动画：同时过渡高度和透明度 */
+    transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
+                opacity 0.3s ease;
+    z-index: 10000;
+}
+
+/* 当激活状态或悬停状态时 */
+.menu-container:hover .dropdown-bg,
+.dropdown-bg.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    /* 高度将通过你的 JS：dropdownBg.style.height 动态赋值 */
 }
 
 /* 4. 删除之前所有关于 .menu-container:hover .dropdown-bg 的高度设置 */
@@ -296,9 +312,16 @@ header nav {
 
 .menu-links li {
     margin-bottom: 25px;
-    opacity: 0; /* 初始隐藏 */
-    transform: translateY(20px); /* 初始位置稍微靠下 */
-    transition: all 0.5s ease; /* 文字浮现动画 */
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: all 0.5s ease;
+}
+
+/* 统一：只要下拉背景展开（无论是悬停还是激活），文字就浮现 */
+.menu-container:hover .menu-links li,
+.dropdown-bg.active .menu-links li {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 链接文字样式 */
