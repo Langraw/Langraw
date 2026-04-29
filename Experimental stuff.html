@@ -78,19 +78,42 @@
     </section>
     </main>
     <script>
-        const menuContainer = document.querySelector('.menu-container');
-        const dropdownBg = document.querySelector('.dropdown-bg');
+        // 【全页面替换】适配 PC 悬停 + 移动端点击
+const menuContainer = document.querySelector('.menu-container');
+const menuToggle = document.querySelector('.menu-toggle');
+const dropdownBg = document.querySelector('.dropdown-bg');
 
-        // 鼠标移入：精准计算高度并展开
-        menuContainer.addEventListener('mouseenter', () => {
-            const fullHeight = dropdownBg.scrollHeight; // 测量内部文字实际占用的高度
-            dropdownBg.style.height = fullHeight + "px";
-        });
+if (menuContainer) {
+    // 统一使用 click，因为现代交互中 PC 端点击菜单也是标准操作
+    // 这样可以彻底解决 iPad 无法触发 hover 的问题
+    menuContainer.addEventListener('click', (e) => {
+        e.stopPropagation(); // 阻止事件冒泡
+        
+        const isActive = menuToggle.classList.contains('active');
+        
+        if (!isActive) {
+            // 展开菜单
+            menuToggle.classList.add('active');
+            dropdownBg.classList.add('active');
+            dropdownBg.style.height = dropdownBg.scrollHeight + "px";
+        } else {
+            // 收起菜单
+            closeMenu();
+        }
+    });
+}
 
-        // 鼠标移出：收起
-        menuContainer.addEventListener('mouseleave', () => {
-            dropdownBg.style.height = "0px";
-        });
+// 提取收起菜单的公共函数
+function closeMenu() {
+    if (menuToggle) menuToggle.classList.remove('active');
+    if (dropdownBg) {
+        dropdownBg.classList.remove('active');
+        dropdownBg.style.height = "0px";
+    }
+}
+
+// 点击页面任意位置关闭菜单（对移动端非常友好）
+document.addEventListener('click', closeMenu);
     </script>
 </body>
 </html>
