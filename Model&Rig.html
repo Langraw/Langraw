@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你的名字 | 艺术动画作品集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <h1 class="nav-logo">Model & Rig</h1> <div class="menu-container">
+            <div class="menu-toggle" id="menuToggle">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            
+            <div class="dropdown-bg">
+                <ul class="menu-links">
+                    <li><a href="index.html">Animation</a></li>
+                    <li><a href="Model&Rig.html">Model & Rig</a></li>
+                    <li><a href="Experimental stuff.html">Experimental stuff</a></li>
+                    <li><a href="#">2D Assets</a></li>
+                    <li><a href="#">“Me: Langraw"</a></li>
+                </ul>
+            </div>
+        </div> 
+    </nav>
+</header>
+
+    <main>
+        
+<section class="project-group">
+    <h2 class="group-title">Modelling:Robot</h2>
+
+    <div class="gallery">
+        <div class="project-card">
+            <div class="video-container">
+                <video controls playsinline>
+                    <source src="assets/model/Robot.mp4" type="video/mp4">
+             </video>
+         </div>
+    <h3>Battleplan: Arclight</h3>
+</div>
+
+        <div class="project-card">
+            <div class="video-container">
+                <img src="assets/model/R_Without_T.jpg" alt="Model Render" 
+                     style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <h3>模型渲染图标题</h3>
+</div>
+        <div class="project-card">
+            <div class="video-container">
+                <img src="assets/model/R1.jpg" alt="Model Render" 
+                     style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <h3>模型渲染图标题</h3>
+</div>
+<div class="project-card">
+            <div class="video-container">
+                <img src="assets/model/8.jpg" alt="Model Render" 
+                     style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <h3>模型渲染图标题</h3>
+</div>
+    </div> <div class="group-description">
+        这里是 Level 5 (2025) 这一整组作品的统一大简介。你可以在这里合并描述你的创作灵感、技术细节，以及这一阶段的整体艺术追求。
+    </div>
+
+</section>
+
+<section class="project-group">
+    <div class="group-header">
+    <h2 class="group-title" id="rigTitle">Rig</h2> 
+    
+    <div class="work-selector-container">
+        <button class="choose-work-btn" id="rigTrigger">Choose work</button>
+        <div class="side-panel" id="rigSidePanel">
+            <ul class="work-list">
+                <li>
+<a href="javascript:void(0)" class="work-item" 
+   data-video="assets/Rig/Tiger.mp4" 
+   data-shortname="Tiger Rig" 
+   data-desc="Intro content for Work 1...">
+   Tiger Rig
+</a>
+            </li>
+            <li>
+    <a href="javascript:void(0)" class="work-item" 
+       data-video="assets/Rig/Moira.mp4" 
+       data-video2="assets/Rig/Moira_adv.mp4" 
+       data-shortname="Moira Rig" 
+       data-desc="这是基础介绍文字。"
+       data-extra="这是专门显示在两个视频下方的额外技术细节（仅双视频可见）。">
+       Moira Rig
+    </a>
+</li>
+        </ul>
+        </div>
+    </div>
+    </div>
+
+    <div class="display-canvas">
+        <div class="main-display-wrapper" style="display: flex; gap: 40px; width: 100%;">
+            <div class="video-content" id="rigVideoContainer" style="flex: 0 0 70%; aspect-ratio: 16/9; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center;">
+                <p class="placeholder">(Please choose the work)</p>
+            </div>
+            <div class="info-sidebar" id="rigInfoSidebar" style="flex: 1;">
+                </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+    <script>
+       // 1. 顶部导航逻辑（保留你原来的）
+// 1. 处理顶部导航栏下拉
+const menuContainer = document.querySelector('.menu-container');
+const dropdownBg = document.querySelector('.dropdown-bg');
+if (menuContainer && dropdownBg) {
+    menuContainer.addEventListener('mouseenter', () => {
+        dropdownBg.style.height = dropdownBg.scrollHeight + "px";
+    });
+    menuContainer.addEventListener('mouseleave', () => {
+        dropdownBg.style.height = "0px";
+    });
+}
+
+// 2. 处理 Rig 侧滑面板的开启与关闭
+const rigBtn = document.getElementById('rigTrigger');
+const rigPanel = document.getElementById('rigSidePanel');
+const rigClose = document.querySelector('.close-panel-btn');
+
+if (rigBtn && rigPanel) {
+    rigBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        rigPanel.classList.add('active'); // 弹出
+    });
+}
+
+if (rigClose) {
+    rigClose.addEventListener('click', () => {
+        rigPanel.classList.remove('active'); // 关闭
+    });
+}
+
+// 3. 处理点击作品切换视频和 Intro (完整替换版)
+document.querySelectorAll('.work-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const shortName = this.getAttribute('data-shortname') || this.innerText;
+        const videoSrc1 = this.getAttribute('data-video');
+        const videoSrc2 = this.getAttribute('data-video2'); 
+        const descText = this.getAttribute('data-desc');
+        const extraText = this.getAttribute('data-extra'); // 新增：获取额外介绍
+
+        const mainTitle = document.getElementById('rigTitle');
+        const videoContainer = document.getElementById('rigVideoContainer');
+        const infoSidebar = document.getElementById('rigInfoSidebar');
+
+        // 1. 更新标题
+        if (mainTitle) {
+            mainTitle.innerHTML = `Rig : <span style="font-weight: 300; margin-left: 10px; color: #666;">${shortName}</span>`;
+        }
+
+        // 2. 注入视频与额外 Intro
+        if (videoContainer) {
+            videoContainer.style.border = "none";
+            
+            if (videoSrc2) {
+                // 双视频模式：注入视频 + 紧跟其下的额外 intro
+                videoContainer.style.display = "block";
+                videoContainer.style.background = "transparent"; // 改为 block 方便纵向排列
+                videoContainer.innerHTML = `
+                    <div class="double-video-wrapper">
+                        <video controls playsinline><source src="${videoSrc1}" type="video/mp4"></video>
+                        <video controls playsinline><source src="${videoSrc2}" type="video/mp4"></video>
+                    </div>
+                    <div class="extra-video-intro">
+                        ${extraText}
+                    </div>`;
+            } else {
+                // 单视频模式：保持原样
+                videoContainer.style.display = "flex";
+                videoContainer.innerHTML = `
+                    <video controls playsinline style="width:100%; height:100%; object-fit:contain;">
+                        <source src="${videoSrc1}" type="video/mp4">
+                    </video>`;
+            }
+        }
+
+        // 3. 注入侧边基础描述
+        if (infoSidebar) {
+            infoSidebar.innerHTML = `
+                <div class="work-detail-info" style="animation: fadeIn 0.5s ease;">
+                    <p style="color: #444; line-height: 1.8; white-space: pre-line;">${descText}</p>
+                </div>`;
+        }
+
+        const rigPanel = document.getElementById('rigSidePanel');
+        if (rigPanel) rigPanel.classList.remove('active');
+    });
+});
+    </script>
+</body>
+</html>
