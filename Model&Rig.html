@@ -118,26 +118,48 @@
     <script>
        // 1. 顶部导航逻辑（保留你原来的）
 // 1. 处理顶部导航栏下拉
+// 1. 处理顶部导航栏下拉（替换为点击触发，适配 iPad/手机）
 const menuContainer = document.querySelector('.menu-container');
+const menuToggle = document.querySelector('.menu-toggle');
 const dropdownBg = document.querySelector('.dropdown-bg');
-if (menuContainer && dropdownBg) {
-    menuContainer.addEventListener('mouseenter', () => {
-        dropdownBg.style.height = dropdownBg.scrollHeight + "px";
-    });
-    menuContainer.addEventListener('mouseleave', () => {
-        dropdownBg.style.height = "0px";
+
+if (menuContainer) {
+    menuContainer.addEventListener('click', (e) => {
+        e.stopPropagation(); // 阻止点击事件向上传播
+        
+        const isActive = dropdownBg.classList.contains('active');
+        
+        if (!isActive) {
+            // 展开菜单
+            if (menuToggle) menuToggle.classList.add('active');
+            dropdownBg.classList.add('active');
+            dropdownBg.style.height = dropdownBg.scrollHeight + "px";
+        } else {
+            // 收起菜单
+            closeGlobalMenu();
+        }
     });
 }
 
+// 新增：提取一个公共的收起函数，方便多处调用
+function closeGlobalMenu() {
+    if (menuToggle) menuToggle.classList.remove('active');
+    if (dropdownBg) {
+        dropdownBg.classList.remove('active');
+        dropdownBg.style.height = "0px";
+    }
+}
+
 // 2. 处理 Rig 侧滑面板的开启与关闭
+// 2. 处理 Rig 侧滑面板（替换为 Toggle 逻辑）
 const rigBtn = document.getElementById('rigTrigger');
 const rigPanel = document.getElementById('rigSidePanel');
-const rigClose = document.querySelector('.close-panel-btn');
 
 if (rigBtn && rigPanel) {
     rigBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        rigPanel.classList.add('active'); // 弹出
+        // 切换面板状态，点击按钮既能开也能关
+        rigPanel.classList.toggle('active');
     });
 }
 
@@ -202,6 +224,16 @@ document.querySelectorAll('.work-item').forEach(item => {
         const rigPanel = document.getElementById('rigSidePanel');
         if (rigPanel) rigPanel.classList.remove('active');
     });
+});
+        // 新增：点击页面空白处，关闭所有已打开的菜单/面板
+document.addEventListener('click', (e) => {
+    // 1. 关闭顶部导航
+    closeGlobalMenu();
+    
+    // 2. 关闭 Rig 选择面板（如果点击的目标不是面板本身和按钮）
+    if (rigPanel && !rigPanel.contains(e.target) && e.target !== rigBtn) {
+        rigPanel.classList.remove('active');
+    }
 });
     </script>
 </body>
