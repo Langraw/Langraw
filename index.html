@@ -209,8 +209,13 @@
 <!-- PDF 全屏预览容器 (隐藏状态) -->
 <div id="pdfViewer" class="pdf-modal">
     <div class="modal-content">
-        <span class="close-pdf" onclick="closePDF()">&times;</span>
-        <iframe id="pdfFrame" src="" frameborder="0"></iframe>
+        <div class="modal-header-bar" style="display: flex; justify-content: space-between; background: #1a1a1d; padding: 10px 20px; align-items: center;">
+            <a id="pdfDownloadLink" href="" target="_blank" class="sidebar-btn" style="margin: 0; padding: 5px 15px; font-size: 0.8rem; width: auto;">Open Full Screen / Download</a>
+            
+            <span class="close-pdf" onclick="closePDF()" style="color: white; font-size: 30px; cursor: pointer; line-height: 1;">&times;</span>
+        </div>
+        
+        <iframe id="pdfFrame" src="" frameborder="0" style="width: 100%; height: calc(100% - 50px);"></iframe>
     </div>
 </div>
     </div>
@@ -276,12 +281,18 @@
     function openPDF(fileUrl) {
     const viewer = document.getElementById('pdfViewer');
     const frame = document.getElementById('pdfFrame');
+    const downloadLink = document.getElementById('pdfDownloadLink'); // 获取新按钮
     
-    // 设置 PDF 路径
+    // 1. 设置 iframe 预览路径
     frame.src = fileUrl;
-    // 显示预览层
+    
+    // 2. 设置“全屏/下载”按钮的链接
+    downloadLink.href = fileUrl;
+    
+    // 3. 显示预览层
     viewer.style.display = 'block';
-    // 禁止背景滚动
+    
+    // 4. 禁止背景滚动
     document.body.style.overflow = 'hidden';
 }
 
