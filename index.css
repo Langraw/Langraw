@@ -10,19 +10,24 @@
 
 .index-sidebar {
     width: 300px;
-    background-color: #ffffff;
-    border-right: 1px solid #eee;
+    background-color: #eeeeee; /* 维持你的浅灰色背景 */
+    border-right: 1px solid #eaeaea; 
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 60px 20px;
     flex-shrink: 0;
-    background-color: #eeeeee; /* 浅灰色背景 */
-    border-right: 1px solid #eaeaea; /* 添加一条极细的分割线，增加精致感 */
-    
-    /* 确保侧边栏填满高度 */
-    min-height: 100vh;
     box-sizing: border-box;
+
+    /* --- 核心修复：解决 iPad 按钮消失问题 --- */
+    height: 100vh;           /* 固定高度为屏幕高度 */
+    overflow-y: auto;        /* 内容过多时允许内部垂直滚动 */
+    position: sticky;        /* 确保它相对于父级固定 */
+    top: 0;
+
+    /* 优化：隐藏滚动条但保留滚动功能（让界面更清爽） */
+    -ms-overflow-style: none;  /* IE */
+    scrollbar-width: none;     /* Firefox */
 }
 
 .index-main {
