@@ -1,337 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Langraw</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="index.css"> <!-- 必须加这一行 -->
+    <link rel="stylesheet" href="index.css">
 </head>
-<!-- 必须给 body 加上 index-page-body 类 -->
 <body class="index-page-body">
 
-    <!-- 左侧区域 -->
     <aside class="index-sidebar">
-    <div class="avatar-box">
-    <img src="other/head.JPG" alt="Langraw's Avatar" class="avatar-img">
-</div>
-    <h2 class="sidebar-id">Langraw</h2>
-    
-    <div class="contact-info">
-        <p class="sidebar-email">Email: langrwolf@outlook.com</p>
-        <a href="https://www.artstation.com/Langraw" target="_blank" class="sidebar-btn">ArtStation</a>
-        <a href="https://space.bilibili.com/34035807" target="_blank" class="sidebar-btn">Bilibili</a>
-    </div>
-
-    <!-- 新增个人简介区域 -->
-    <div class="sidebar-bio">
-        <p>*'Bilibili' is for 2D collection</p>
-        <p>3D for Animation/Rigging</p>
-        <p>Level 6 student in NCCA, Bournemouth University. Study for computer animation and visual effects. My aims is to use Maya to build high-quality animation and model rigging. It's been a tough but cool journey. I believe I can do it:）</p>
-        <p>I would like to gain experience in my work, such as using Maya more efficiently for advanced animation production and put myself deeply into the field of 3D animation, and I aim to combine technology and art for long-term to provide the team with high-quality and stable animation, rigging productions. </p>
-    </div>
-    <div class="cv-container">
-        <button class="sidebar-btn cv-btn" onclick="openPDF('other/cv.pdf')">My CV</button>
-    </div>
-    </div>
-</aside>
-
-   <main class="index-main">
-    <header>
-    <nav>
-        <!-- 这里的标题可以根据 index 页面需求修改 -->
-        <h1 class="nav-logo">Me: Langraw</h1> 
+        <div class="avatar-box">
+            <img src="other/head.JPG" alt="Langraw's Avatar" class="avatar-img">
+        </div>
+        <h2 class="sidebar-id">Langraw</h2>
         
-        <div class="menu-container">
-            <!-- 汉堡图标 -->
-            <div class="menu-toggle" id="menuToggle">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
-            </div>
+        <div class="contact-info">
+            <p class="sidebar-email">Email: langrwolf@outlook.com</p>
+            <a href="https://www.artstation.com/Langraw" target="_blank" class="sidebar-btn">ArtStation</a>
+            <a href="https://space.bilibili.com/34035807" target="_blank" class="sidebar-btn">Bilibili</a>
+        </div>
+
+        <div class="sidebar-bio">
+            <p>*'Bilibili' is for 2D collection</p>
+            <p>3D for Animation/Rigging</p>
+            <p>Level 6 student in NCCA, Bournemouth University. Study for computer animation and visual effects. My aims is to use Maya to build high-quality animation and model rigging. It's been a tough but cool journey. I believe I can do it:）</p>
+            <p>I would like to gain experience in my work, such as using Maya more efficiently for advanced animation production and put myself deeply into the field of 3D animation, and I aim to combine technology and art for long-term to provide the team with high-quality and stable animation, rigging productions.</p>
+        </div>
+        
+        <div class="cv-container">
+            <button class="sidebar-btn cv-btn" onclick="openPDF('other/cv.pdf')">My CV</button>
+        </div>
+    </aside>
+
+    <main class="index-main">
+        <header>
+            <nav>
+                <h1 class="nav-logo">Me: Langraw</h1>
+                
+                <div class="menu-container">
+                    <div class="menu-toggle" id="menuToggle">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </div>
+                    
+                    <div class="dropdown-bg" id="dropdownBg">
+                        <ul class="menu-links">
+                            <li><a href="Animation.html">* Animation</a></li>
+                            <li><a href="Model&Rig.html">* Model & Rig</a></li>
+                            <li><a href="Experimental stuff.html">Experimental stuff</a></li>
+                            <li><a href="index.html">“Me: Langraw"</a></li>
+                        </ul>
+                    </div>
+                </div> 
+            </nav>
+        </header>
+
+        <div class="main-scroll-content">
             
-            <!-- 下拉黑块：点击后滑出的部分 -->
-            <div class="dropdown-bg" id="dropdownBg">
-                <ul class="menu-links">
-                    <li><a href="Animation.html">* Animation</a></li>
-                    <li><a href="Model&Rig.html">* Model & Rig</a></li>
-                    <li><a href="Experimental stuff.html">Experimental stuff</a></li>
-                    <li><a href="index.html">“Me: Langraw"</a></li>
-                </ul>
-            </div>
-        </div> 
-    </nav>
-</header>
+            <section class="work-group">
+                <h2 class="group-title">Animation Showcase</h2>
+                
+                <div class="horizontal-row">
+                    <div class="item card-video">
+                        <div class="video-container">
+                            <video class="promo-video" loop playsinline>
+                                <source src="animation/animation_3view_L5.mov">
+                            </video>
+                            <div class="video-overlay">
+                                <div class="play-button"></div>
+                            </div>
+                        </div>
+                        <span>Preview [Video]</span>
+                    </div>
+                    <div class="item card-img"><img src="animation/Ani1.png"><span>Screenshot1</span></div>
+                    <div class="item card-img"><img src="animation/Ani2.png"><span>Screenshot2</span></div>
+                </div>
 
-    <!-- 主滚动区域 -->
-    <div class="main-scroll-content">
-        
-        <!-- 第一组：Animation Showcase -->
-        <section class="work-group">
-            <h2 class="group-title">Animation Showcase</h2>
-            <div class="horizontal-row">
-                <!-- 第一个固定是视频 -->
-                <!-- 第一个固定是视频 -->
-<div class="item card-video">
-    <div class="video-container">
-        <!-- 移除 autoplay，保留 loop 和 playsinline -->
-        <video class="promo-video" loop playsinline>
-            <source src="animation/animation_3view_L5.mov">
-        </video>
-        
-        <!-- 播放按钮遮罩 -->
-        <div class="video-overlay">
-            <div class="play-button"></div>
-        </div>
-    </div>
-    <span>Preview [Video]</span>
-</div>
-                <!-- 后面是图片 -->
-                <div class="item card-img"><img src="animation/Ani1.png"><span>Screenshot1</span></div>
-                <div class="item card-img"><img src="animation/Ani2.png"><span>Screenshot2</span></div>
-            </div>
-        </section>
+                <div class="horizontal-row" style="margin-top: 30px;">
+                    <div class="item card-video">
+                        <div class="video-container">
+                            <video class="promo-video" loop playsinline>
+                                <source src="animation/Eno.mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <div class="play-button"></div>
+                            </div>
+                        </div>
+                        <span>Preview [Video]</span>
+                    </div>
+                </div>
 
-             <section class="work-group">
-            <div class="horizontal-row">
-                <!-- 第一个固定是视频 -->
-                <!-- 第一个固定是视频 -->
-<div class="item card-video">
-    <div class="video-container">
-        <!-- 移除 autoplay，保留 loop 和 playsinline -->
-        <video class="promo-video" loop playsinline>
-            <source src="animation/Eno.mp4">
-        </video>
-        
-        <!-- 播放按钮遮罩 -->
-        <div class="video-overlay">
-            <div class="play-button"></div>
-        </div>
-    </div>
-    <span>Preview [Video]</span>
+                <div class="horizontal-row" style="margin-top: 30px;">
+                    <div class="item card-video">
+                        <div class="video-container">
+                            <video class="promo-video" loop playsinline>
+                                <source src="animation/Eno_Tiger.mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <div class="play-button"></div>
+                            </div>
+                        </div>
+                        <span>Preview [Video]</span>
+                    </div>
+                    <div class="item card-img"><img src="animation/Tiger1.png"><span>Workflow_Screenshot</span></div>
+                    <div class="item card-img"><img src="animation/Tiger2.png"><span>Workflow_Screenshot2</span></div>
+                    <div class="item card-img"><img src="animation/Tiger3.png"><span>Workflow_Screenshot3</span></div>
+                </div>
+            </section>
 
-           <section class="work-group">
-            <div class="horizontal-row">
-                <!-- 第一个固定是视频 -->
-                <!-- 第一个固定是视频 -->
-<div class="item card-video">
-    <div class="video-container">
-        <!-- 移除 autoplay，保留 loop 和 playsinline -->
-        <video class="promo-video" loop playsinline>
-            <source src="animation/Eno_Tiger.mp4">
-        </video>
-        
-        <!-- 播放按钮遮罩 -->
-        <div class="video-overlay">
-            <div class="play-button"></div>
-        </div>
-    </div>
-    <span>Quadruped animals [Video]</span>
-</div>
-                <!-- 后面是图片 -->
-                <div class="item card-img"><img src="animation/Tiger1.png"><span>Workflow_Screenshot</span></div>
-                <div class="item card-img"><img src="animation/Tiger2.png"><span>Workflow_Screenshot2</span></div>
-                <div class="item card-img"><img src="animation/Tiger3.png"><span>Workflow_Screenshot2</span></div>
-            </div>
-            </div>
-        </section>
+            <section class="work-group">
+                <h2 class="group-title">Rigging Showcase</h2>
+                
+                <div class="horizontal-row">
+                    <div class="item card-video">
+                        <div class="video-container">
+                            <video class="promo-video" loop playsinline>
+                                <source src="Rig/Tiger.mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <div class="play-button"></div>
+                            </div>
+                        </div>
+                        <span>Tiger Rig Preview [Video]</span>
+                    </div>
+                    <div class="item card-img"><img src="Rig/RigT.png"><span>Model</span></div>
+                    <div class="item card-img"><img src="Rig/Rig1.png"><span>Node editor</span></div>
+                    <div class="item card-img"><img src="Rig/Rig2.png"><span>Node editor</span></div>
+                </div>
 
-        </section>
+                <div class="horizontal-row" style="margin-top: 30px;">
+                    <div class="item card-video">
+                        <div class="video-container">
+                            <video class="promo-video" loop playsinline>
+                                <source src="Rig/Moira.mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <div class="play-button"></div>
+                            </div>
+                        </div>
+                        <span>‘Moira’ Rig Preview [Video]</span>
+                    </div>
+                    <div class="item card-img"><img src="Rig/RigM.png"><span>Model</span></div>
+                    <div class="item card-img"><img src="Rig/Rig3.png"><span>Node editor</span></div>
+                    <div class="item card-img"><img src="Rig/Rig4.png"><span>Node editor</span></div>
+                </div>
+            </section>
 
+            <section class="work-group">
+                <h2 class="group-title">Blog & Record</h2>
+                <div class="horizontal-row">
+                    <div class="item card-pdf" onclick="openPDF('Blog/Blog1.pdf')">
+                        <div class="pdf-cover">
+                            <img src="blogfm.PNG" alt="Blog Cover">
+                            <div class="pdf-overlay">
+                                <span>Read Article</span>
+                            </div>
+                        </div>
+                        <span>Blog1：Thoughts for Rigging</span>
+                    </div>
 
+                    <div class="item card-pdf" onclick="openPDF('Blog/Blog2.pdf')">
+                        <div class="pdf-cover">
+                            <img src="blogfm.PNG" alt="Blog Cover">
+                            <div class="pdf-overlay">
+                                <span>Read Article</span>
+                            </div>
+                        </div>
+                        <span>Blog2：Thoughts for Animation</span>
+                    </div>
 
+                    <div class="item card-pdf" onclick="openPDF('Blog/Blog3.pdf')">
+                        <div class="pdf-cover">
+                            <img src="blogfm.PNG" alt="Blog Cover">
+                            <div class="pdf-overlay">
+                                <span>Read Article</span>
+                            </div>
+                        </div>
+                        <span>Blog3：Reflection, situation and future</span>
+                    </div>
+                </div>
+            </section>
 
-        <!-- 第二组：Rigging Showcase (以此类推) -->
- <!-- 主滚动区域 -->
-    <div class="main-scroll-content">
-        
-        <!-- 第一组：Rigging Showcase -->
-        <section class="work-group">
-            <h2 class="group-title">Rigging Showcase</h2>
-            <div class="horizontal-row">
-                <!-- 第一个固定是视频 -->
-                <!-- 第一个固定是视频 -->
-<div class="item card-video">
-    <div class="video-container">
-        <!-- 移除 autoplay，保留 loop 和 playsinline -->
-        <video class="promo-video" loop playsinline>
-            <source src="Rig/Tiger.mp4">
-        </video>
-        
-        <!-- 播放按钮遮罩 -->
-        <div class="video-overlay">
-            <div class="play-button"></div>
-        </div>
-    </div>
-    <span>Tiger Rig Preview [Video]</span>
-</div>
-                <!-- 后面是图片 -->
-                <div class="item card-img"><img src="Rig/RigT.png"><span>Model</span></div>
-                <div class="item card-img"><img src="Rig/Rig1.png"><span>Node editor</span></div>
-                <div class="item card-img"><img src="Rig/Rig2.png"><span>Node editor</span></div>
-            </div>
-        </section>
-
-             <section class="work-group">
-            <div class="horizontal-row">
-                <!-- 第一个固定是视频 -->
-                <!-- 第一个固定是视频 -->
-<div class="item card-video">
-    <div class="video-container">
-        <!-- 移除 autoplay，保留 loop 和 playsinline -->
-        <video class="promo-video" loop playsinline>
-            <source src="Rig/Moira.mp4">
-        </video>
-        
-        <!-- 播放按钮遮罩 -->
-        <div class="video-overlay">
-            <div class="play-button"></div>
-        </div>
-    </div>
-    <span>‘Moira’ Rig Preview [Video]</span>
-</div>
-                <!-- 后面是图片 -->
-                <div class="item card-img"><img src="Rig/RigM.png"><span>Model</span></div>
-                <div class="item card-img"><img src="Rig/Rig3.png"><span>Node editor</span></div>
-                <div class="item card-img"><img src="Rig/Rig4.png"><span>Node editor</span></div>
-            </div>
-        </section>
-<!-- 第三组：Blog Showcase -->
-<section class="work-group">
-    <h2 class="group-title">Blog & Record</h2>
-    <div class="horizontal-row">
-        <!-- 每一篇 Blog 作为一个 item -->
-        <div class="item card-pdf" onclick="openPDF('Blog/Blog1.pdf')">
-            <div class="pdf-cover">
-                <img src="blogfm.PNG" alt="Blog Cover">
-                <div class="pdf-overlay">
-                    <span>Read Article</span>
+            <div id="pdfViewer" class="pdf-modal">
+                <div class="modal-content">
+                    <div class="modal-header-bar" style="display: flex; justify-content: space-between; background: #1a1a1d; padding: 10px 20px; align-items: center;">
+                        <a id="pdfDownloadLink" href="" target="_blank" class="sidebar-btn" style="margin: 0; padding: 5px 15px; font-size: 0.8rem; width: auto;">Open Full Screen / Download</a>
+                        <span class="close-pdf" onclick="closePDF()" style="color: white; font-size: 30px; cursor: pointer; line-height: 1;">&times;</span>
+                    </div>
+                    <iframe id="pdfFrame" src="" frameborder="0" style="width: 100%; height: calc(100% - 50px);"></iframe>
                 </div>
             </div>
-            <span>Blog1：Thoughts for Rigging</span>
-        </div>
 
-        <!-- 更多 Blog... -->
-        <div class="item card-pdf" onclick="openPDF('Blog/Blog2.pdf')">
-            <div class="pdf-cover">
-                <img src="blogfm.PNG" alt="Blog Cover">
-                <div class="pdf-overlay">
-                    <span>Read Article</span>
-                </div>
-            </div>
-            <span>Blog2：Thoughts for Animation</span>
-        </div>
-
-        <div class="item card-pdf" onclick="openPDF('Blog/Blog3.pdf')">
-            <div class="pdf-cover">
-                <img src="blogfm.PNG" alt="Blog Cover">
-                <div class="pdf-overlay">
-                    <span>Read Article</span>
-                </div>
-            </div>
-            <span>Blog3：Reflection, situation and future</span>
-        </div>
-    </div>
-</section>
-
-<!-- PDF 全屏预览容器 (隐藏状态) -->
-<div id="pdfViewer" class="pdf-modal">
-    <div class="modal-content">
-        <div class="modal-header-bar" style="display: flex; justify-content: space-between; background: #1a1a1d; padding: 10px 20px; align-items: center;">
-            <a id="pdfDownloadLink" href="" target="_blank" class="sidebar-btn" style="margin: 0; padding: 5px 15px; font-size: 0.8rem; width: auto;">Open Full Screen / Download</a>
-            
-            <span class="close-pdf" onclick="closePDF()" style="color: white; font-size: 30px; cursor: pointer; line-height: 1;">&times;</span>
-        </div>
-        
-        <iframe id="pdfFrame" src="" frameborder="0" style="width: 100%; height: calc(100% - 50px);"></iframe>
-    </div>
-</div>
-    </div>
-</main>
+        </div> </main>
 
     <script src="script.js"></script>
-   <script>
-    /* ==========================================
-       1. 菜单逻辑 (悬停 + 点击)
-       ========================================== */
-    const menuToggle = document.getElementById('menuToggle');
-    const dropdownBg = document.getElementById('dropdownBg');
-    const menuContainer = document.querySelector('.menu-container');
+    <script>
+        /* 1. 菜单切换逻辑 (Hover + Click) */
+        const menuToggle = document.getElementById('menuToggle');
+        const dropdownBg = document.getElementById('dropdownBg');
+        const menuContainer = document.querySelector('.menu-container');
 
-    function updateMenuHeight(isOpen) {
-        if (isOpen) {
-            dropdownBg.style.height = dropdownBg.scrollHeight + 'px';
-            dropdownBg.classList.add('active');
-            menuToggle.classList.add('active');
-        } else {
-            dropdownBg.style.height = '0';
-            dropdownBg.classList.remove('active');
-            menuToggle.classList.remove('active');
-        }
-    }
-
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isOpen = !dropdownBg.classList.contains('active');
-        updateMenuHeight(isOpen);
-    });
-
-    if (window.matchMedia("(hover: hover)").matches) {
-        menuContainer.addEventListener('mouseenter', () => updateMenuHeight(true));
-        menuContainer.addEventListener('mouseleave', () => updateMenuHeight(false));
-    }
-
-    document.addEventListener('click', () => updateMenuHeight(false));
-
-    /* ==========================================
-       2. 视频控制逻辑 (解决不能播放问题)
-       ========================================== */
-    // 找到页面上所有的视频容器
-    const vContainers = document.querySelectorAll('.video-container');
-
-    vContainers.forEach(container => {
-        const video = container.querySelector('video');
-
-        container.addEventListener('click', function(e) {
-            e.stopPropagation(); // 防止点击视频触发菜单关闭
-
-            if (video.paused) {
-                // 播放视频并添加样式类隐藏播放按钮
-                video.play();
-                container.classList.add('playing');
+        function updateMenuHeight(isOpen) {
+            if (isOpen) {
+                dropdownBg.style.height = dropdownBg.scrollHeight + 'px';
+                dropdownBg.classList.add('active');
+                menuToggle.classList.add('active');
             } else {
-                // 暂停视频并显示播放按钮
-                video.pause();
-                container.classList.remove('playing');
+                dropdownBg.style.height = '0';
+                dropdownBg.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
+        }
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !dropdownBg.classList.contains('active');
+            updateMenuHeight(isOpen);
         });
-    });
-    function openPDF(fileUrl) {
-    const viewer = document.getElementById('pdfViewer');
-    const frame = document.getElementById('pdfFrame');
-    const downloadLink = document.getElementById('pdfDownloadLink'); // 获取新按钮
-    
-    // 1. 设置 iframe 预览路径
-    frame.src = fileUrl;
-    
-    // 2. 设置“全屏/下载”按钮的链接
-    downloadLink.href = fileUrl;
-    
-    // 3. 显示预览层
-    viewer.style.display = 'block';
-    
-    // 4. 禁止背景滚动
-    document.body.style.overflow = 'hidden';
-}
 
-function closePDF() {
-    const viewer = document.getElementById('pdfViewer');
-    const frame = document.getElementById('pdfFrame');
-    
-    viewer.style.display = 'none';
-    frame.src = ''; // 清空，停止加载
-    // 恢复背景滚动
-    document.body.style.overflow = 'auto';
-}
+        if (window.matchMedia("(hover: hover)").matches) {
+            menuContainer.addEventListener('mouseenter', () => updateMenuHeight(true));
+            menuContainer.addEventListener('mouseleave', () => updateMenuHeight(false));
+        }
 
-</script>
+        document.addEventListener('click', () => updateMenuHeight(false));
+
+        /* 2. 视频点击播放/暂停控制 */
+        const vContainers = document.querySelectorAll('.video-container');
+
+        vContainers.forEach(container => {
+            const video = container.querySelector('video');
+            container.addEventListener('click', function(e) {
+                e.stopPropagation(); 
+                if (video.paused) {
+                    video.play();
+                    container.classList.add('playing');
+                } else {
+                    video.pause();
+                    container.classList.remove('playing');
+                }
+            });
+        });
+
+        /* 3. PDF 弹窗组件逻辑 (支持 PC 预览与 iPad 全屏切换) */
+        function openPDF(fileUrl) {
+            const viewer = document.getElementById('pdfViewer');
+            const frame = document.getElementById('pdfFrame');
+            const downloadLink = document.getElementById('pdfDownloadLink');
+            
+            frame.src = fileUrl;
+            downloadLink.href = fileUrl; 
+            viewer.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePDF() {
+            const viewer = document.getElementById('pdfViewer');
+            const frame = document.getElementById('pdfFrame');
+            
+            viewer.style.display = 'none';
+            frame.src = ''; 
+            document.body.style.overflow = 'auto';
+        }
+    </script>
 </body>
-
+</html>
